@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>YourTodos</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <h2>Logo</h2>
+      </div>
+      <div class="title-container">
+        <h1>Your Todos</h1>
+      </div>
+    </header>
+    <main>
+      <section class="project">
+        <header class="project-header">
+          <h2>Projects</h2>
+          <button id="project-add-btn-container">
+            <img src="img/add.png" alt="" id="project-add-btn" />
+          </button>
+          <!-- <h5>Create new project</h5> -->
+        </header>
+        <div class="projects-container">
+          <!-- <h3 class="project-heading-name">Name</h3>
+          <h3 class="project-heading-description">Description</h3>
+          <h3 class="project-heading-duedate">Due Date</h3> -->
+
+          <div class="project-headings">
+            <h3 class="project-heading-name">Title</h3>
+            <h3 class="project-heading-description">Description</h3>
+            <h3 class="project-heading-duedate">Due Date</h3>
+          </div>
+          <!-- <article class="project-item" id="project-item-1">
+            <div class="project-delete-container">
+              <img src="./img/delete.png" alt="" />
+            </div>
+            <div class="project-checkbox-container">
+              <img src="./img/box.png" alt="" class="project-item-checkbox" />
+            </div>
+            <input type="text" placeholder="Default" />
+            <input type="text" placeholder="Your first project!" />
+            <input type="date" />
+          </article> -->
+          <!-- <article class="project-item" id="project-item-2">
+            <div class="project-delete-container">
+              <img src="./img/delete.png" alt="" />
+            </div>
+            <div class="project-checkbox-container">
+              <img src="./img/box.png" alt="" class="project-item-checkbox" />
+            </div>
+            <input type="text" placeholder="Home" />
+            <input type="text" placeholder="The usual chores" />
+            <input type="date" />
+          </article> -->
+        </div>
+      </section>
+      <section class="todo">
+        <header class="todo-header">
+          <h2>Todos</h2>
+          <img src="./img/add.png" alt="" id="todo-add-btn" />
+          <h2>for</h2>
+          <span id="change-project">
+            <select name="project-dropdown" id="project-dropdown">
+              <option value="test1">Default</option>
+              <option value="default">Test1</option>
+              <option value="default">All projects</option>
+            </select>
+          </span>
+        </header>
+        <div class="todos-container">
+          <div class="todos-headings">
+            <h3 class="todo-heading-name">Title</h3>
+            <h3 class="todo-heading-priority">Priority</h3>
+            <h3 class="todo-heading-description">Description</h3>
+            <h3 class="todo-heading-duedate">Due Date</h3>
+          </div>
+          <article class="todo-item" id="todo-item-1">
+            <div class="todo-delete-container">
+              <img src="./img/delete.png" alt="" />
+            </div>
+            <div class="todo-checkbox-container">
+              <img src="./img/box.png" alt="" class="todo-item-checkbox" />
+            </div>
+            <input type="text" placeholder="Do the washing" />
+            <select name="" id="">
+              <option value="1st">1st</option>
+              <option value="2nd">2nd</option>
+              <option value="3rd">3rd</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Remember to check for plecters and other stuff"
+            />
+            <input type="date" />
+            <div class="expand">
+              <img src="./img/expand.png" alt="" class="expand-icon" />
+            </div>
+            <div class="todo-expand-container hide" id="todo-expand-container-item-1">
+              <div class="todo-notes-container">
+                <label for="form-todo-notes">Notes:</label>
+                <textarea
+                  name="todo-notes"
+                  form="todo-form"
+                  id="todo-notes"
+                  cols="31"
+                  rows="6"
+                ></textarea>
+              </div>
+              <div class="todo-checklist-container">
+                <label for="todo-checklist">Checklist:</label>
+                <ul class="todo-checklist-item-container">
+                  <li class="todo-checklist-item" id="todo-checklist-item-1">
+                    <div class="todo-checklist-delete-container">
+                      <img src="./img/delete.png" alt="" />
+                    </div>
+                    <div class="todo-checklist-checkbox-container">
+                      <img
+                        src="./img/box.png"
+                        alt=""
+                        class="todo-checklist-checkbox"
+                      />
+                    </div>
+                    <input type="text" id="todo-checklist-item-1-text" />
+                  </li>
+                </ul>
+                <div class="add-checklist-item-btn-container">
+                  <img
+                    src="./img/add.png"
+                    alt=""
+                    class="add-checklist-item-btn"
+                  />
+                </div>
+            </div>
+          </article>
+          <article class="todo-item" id="todo-item-2">
+            <div class="todo-delete-container">
+              <img src="./img/delete.png" alt="" />
+            </div>
+            <div class="todo-checkbox-container">
+              <img src="./img/box.png" alt="" class="todo-item-checkbox" />
+            </div>
+            <input type="text" placeholder="Item 2" />
+            <select name="" id="">
+              <option value="1st">1st</option>
+              <option value="2nd">2nd</option>
+              <option value="3rd">3rd</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Remember to check for plecters and other stuff"
+            />
+            <input type="date" />
+            <div class="expand">
+              <img src="./img/expand.png" alt="" id="expand-icon" />
+            </div>
+          </article>
+        </div>
+      </section>
+      <aside class="project-form-container hide">
+        <form action="#">
+          <div class="close-icon" id="project-form-close">
+            <div class="project-bar1"></div>
+            <div class="project-bar3"></div>
+          </div>
+          <h2>Add new Project</h2>
+          <label for="form-project-title">Title:</label>
+          <input
+            type="text"
+            name="form-project-title"
+            id="form-project-title"
+            required
+          />
+          <label for="form-project-description">Description:</label>
+          <input
+            type="text"
+            name="form-project-description"
+            id="form-project-description"
+            required
+          />
+          <label for="form-project-duedate">Due date:</label>
+          <input
+            type="date"
+            name="form-project-duedate"
+            id="form-project-duedate"
+          />
+          <button id="add-project-btn">Add project</button>
+        </form>
+      </aside>
+      <aside class="todo-form-container hide">
+        <form action="#" id="todo-form">
+          <div class="close-icon" id="todo-form-close">
+            <div class="todo-bar1"></div>
+            <div class="todo-bar3"></div>
+          </div>
+          <h2>Add new Todo</h2>
+          <label for="form-todo-title">Title:</label>
+          <input
+            type="text"
+            name="form-todo-title"
+            id="form-todo-title"
+            required
+          />
+          <label for="form-todo-priority">Priority</label>
+          <select name="form-todo-priority" id="form-todo-priority">
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+          </select>
+          <label for="form-todo-description">Description:</label>
+          <input
+            type="text"
+            name="form-todo-description"
+            id="form-todo-description"
+            required
+          />
+          <label for="form-todo-duedate">Due date:</label>
+          <input type="date" name="form-todo-duedate" id="form-todo-duedate" />
+          <label for="form-todo-notes">Notes:</label>
+          <textarea
+            name="form-todo-notes"
+            form="todo-form"
+            id="form-todo-notes"
+            cols="31"
+            rows="6"
+          ></textarea>
+          <label for="form-todo-checklist">Checklist:</label>
+
+          <ul class="form-todo-checklist-item-container">
+            <li
+              class="form-todo-checklist-item"
+              id="form-todo-checklist-item-1"
+            >
+              <div class="form-todo-checklist-delete-container">
+                <img src="./img/delete.png" alt="" />
+              </div>
+              <div class="form-todo-checklist-checkbox-container">
+                <img
+                  src="./img/box.png"
+                  alt=""
+                  class="form-todo-checklist-checkbox"
+                />
+              </div>
+              <input type="text" id="form-todo-checklist-item-1-text" />
+            </li>
+          </ul>
+          <div class="form-add-checklist-item-btn-container">
+            <img
+              src="./img/add.png"
+              alt=""
+              class="form-add-checklist-item-btn"
+            />
+          </div>
+          <button id="add-todo-btn">Add project</button>
+        </form>
+      </aside>
+    </main>
+    <footer>
+      <p>Created by Oliver Lønberg</p>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>
