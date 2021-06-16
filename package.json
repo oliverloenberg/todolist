@@ -1,0 +1,26 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliverloenberg/todolist.git"
+  },
+  "author": "oliver lønberg o.loenberg@g\u001b[A\u001b[Bmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oliverloenberg/todolist/issues"
+  },
+  "homepage": "https://github.com/oliverloenberg/todolist#readme",
+  "devDependencies": {
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.22.1"
+  }
+}
