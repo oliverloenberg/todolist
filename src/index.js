@@ -6,7 +6,11 @@ import {
 } from "./domManipulation.js";
 
 //Initiate defaultProject
-const defaultProject = new Project("Default", "Add a description!", "Ongoing");
+const defaultProject = new Project(
+  "Default",
+  "Add a description!",
+  "2021-07-21"
+);
 
 const projectArr = [];
 
@@ -14,7 +18,11 @@ projectArr.push(defaultProject);
 
 createDefaultEventListeners();
 
-renderNewProject();
+renderNewProject(
+  defaultProject.title,
+  defaultProject.description,
+  defaultProject.dueDate
+);
 
 console.log(projectArr);
 
