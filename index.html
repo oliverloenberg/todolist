@@ -17,6 +17,8 @@
       </div>
     </header>
     <main>
+      
+      <!-- PROEJCT SECTION -->
       <section class="project">
         <header class="project-header">
           <h2>Projects</h2>
@@ -37,28 +39,19 @@
           </div>
           <!-- <article class="project-item" id="project-item-1">
             <div class="project-delete-container">
-              <img src="./img/delete.png" alt="" />
+              <img src="./img/delete.png" alt="" class="project-delete-icon"/>
             </div>
             <div class="project-checkbox-container">
               <img src="./img/box.png" alt="" class="project-item-checkbox" />
             </div>
-            <input type="text" placeholder="Default" />
-            <input type="text" placeholder="Your first project!" />
-            <input type="date" />
-          </article> -->
-          <!-- <article class="project-item" id="project-item-2">
-            <div class="project-delete-container">
-              <img src="./img/delete.png" alt="" />
-            </div>
-            <div class="project-checkbox-container">
-              <img src="./img/box.png" alt="" class="project-item-checkbox" />
-            </div>
-            <input type="text" placeholder="Home" />
-            <input type="text" placeholder="The usual chores" />
+            <input type="text" />
+            <input type="text" />
             <input type="date" />
           </article> -->
         </div>
       </section>
+      
+      <!-- TODO SECTION -->
       <section class="todo">
         <header class="todo-header">
           <h2>Todos</h2>
@@ -79,9 +72,10 @@
             <h3 class="todo-heading-description">Description</h3>
             <h3 class="todo-heading-duedate">Due Date</h3>
           </div>
+
           <article class="todo-item" id="todo-item-1">
             <div class="todo-delete-container">
-              <img src="./img/delete.png" alt="" />
+              <img src="./img/delete.png" alt="" class="todo-delete-icon" />
             </div>
             <div class="todo-checkbox-container">
               <img src="./img/box.png" alt="" class="todo-item-checkbox" />
@@ -100,23 +94,18 @@
             <div class="expand">
               <img src="./img/expand.png" alt="" class="expand-icon" />
             </div>
+            
             <div class="todo-expand-container hide" id="todo-expand-container-item-1">
               <div class="todo-notes-container">
-                <label for="form-todo-notes">Notes:</label>
-                <textarea
-                  name="todo-notes"
-                  form="todo-form"
-                  id="todo-notes"
-                  cols="31"
-                  rows="6"
-                ></textarea>
+                <label for="todo-notes">Notes:</label>
+                <div class="todo-notes" role="textbox" contenteditable id="todo-notes-1"></div>
               </div>
               <div class="todo-checklist-container">
                 <label for="todo-checklist">Checklist:</label>
                 <ul class="todo-checklist-item-container">
                   <li class="todo-checklist-item" id="todo-checklist-item-1">
                     <div class="todo-checklist-delete-container">
-                      <img src="./img/delete.png" alt="" />
+                      <img src="./img/delete.png" alt="" class="todo-checklist-delete-icon" />
                     </div>
                     <div class="todo-checklist-checkbox-container">
                       <img
@@ -139,7 +128,7 @@
           </article>
           <article class="todo-item" id="todo-item-2">
             <div class="todo-delete-container">
-              <img src="./img/delete.png" alt="" />
+              <img src="./img/delete.png" alt="" class="todo-delete-icon"/>
             </div>
             <div class="todo-checkbox-container">
               <img src="./img/box.png" alt="" class="todo-item-checkbox" />
@@ -158,9 +147,41 @@
             <div class="expand">
               <img src="./img/expand.png" alt="" id="expand-icon" />
             </div>
+             <div class="todo-expand-container hide" id="todo-expand-container-item-2">
+              <div class="todo-notes-container">
+                <label for="todo-notes">Notes:</label>
+                <div class="todo-notes" role="textbox" contenteditable id="todo-notes-2"></div>
+              </div>
+              <div class="todo-checklist-container">
+                <label for="todo-checklist">Checklist:</label>
+                <ul class="todo-checklist-item-container">
+                  <li class="todo-checklist-item" id="todo-checklist-item-1">
+                    <div class="todo-checklist-delete-container">
+                      <img src="./img/delete.png" alt="" class="todo-delete-icon"/>
+                    </div>
+                    <div class="todo-checklist-checkbox-container">
+                      <img
+                        src="./img/box.png"
+                        alt=""
+                        class="todo-checklist-checkbox"
+                      />
+                    </div>
+                    <input type="text" id="todo-checklist-item-2-text" />
+                  </li>
+                </ul>
+                <div class="add-checklist-item-btn-container">
+                  <img
+                    src="./img/add.png"
+                    alt=""
+                    class="add-checklist-item-btn"
+                  />
+                </div>
+            </div>
           </article>
         </div>
       </section>
+
+      <!-- PROJECT FORM -->
       <aside class="project-form-container hide">
         <form action="#">
           <div class="close-icon" id="project-form-close">
@@ -188,9 +209,12 @@
             name="form-project-duedate"
             id="form-project-duedate"
           />
-          <button id="add-project-btn">Add project</button>
+          <button type="button" id="confirm-new-project">Add project</button>
+          <!-- <div id="confirm-new-project">Add project</div> -->
         </form>
       </aside>
+     
+      <!-- TODO FORM -->
       <aside class="todo-form-container hide">
         <form action="#" id="todo-form">
           <div class="close-icon" id="todo-form-close">
@@ -232,17 +256,17 @@
 
           <ul class="form-todo-checklist-item-container">
             <li
-              class="form-todo-checklist-item"
+              class="todo-checklist-item"
               id="form-todo-checklist-item-1"
             >
-              <div class="form-todo-checklist-delete-container">
-                <img src="./img/delete.png" alt="" />
+              <div class="todo-checklist-delete-container">
+                <img src="./img/delete.png" alt="" class="todo-delete-icon"/>
               </div>
-              <div class="form-todo-checklist-checkbox-container">
+              <div class="todo-checklist-checkbox-container">
                 <img
                   src="./img/box.png"
                   alt=""
-                  class="form-todo-checklist-checkbox"
+                  class="todo-checklist-checkbox"
                 />
               </div>
               <input type="text" id="form-todo-checklist-item-1-text" />
@@ -255,7 +279,7 @@
               class="form-add-checklist-item-btn"
             />
           </div>
-          <button id="add-todo-btn">Add project</button>
+           <button type="button" id="confirm-new-todo">Add todo</button>
         </form>
       </aside>
     </main>
