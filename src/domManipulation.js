@@ -1,11 +1,105 @@
-const createDefaultEventListeners = () => {
-  const mainContainer = document.querySelector("main");
+const renderNewProject = () => {
+  const titleInput = document.getElementById("form-project-title").value;
+  const descriptionInput = document.getElementById(
+    "form-project-description"
+  ).value;
+  const dueDateInput = document.getElementById("form-project-duedate").value;
+  //console.log("Hello");
+  //const projectsContainer = document.querySelector(".projects-container");
 
-  mainContainer.addEventListener("click", (event) =>
-    actionBasedOnClickedElement(event)
-  );
+  //Get the container for projects
+  const projectsCnt = document.querySelector(".projects-container");
+  console.log(projectsCnt);
 
-  //console.log(mainContainer);
+  //Create article container for project item
+
+  const projectItemArticle = document.createElement("article");
+  projectItemArticle.className = "project-item";
+  let projectIdNum = countAmountOfItems(projectsCnt);
+  //let projectId = `project-item-` + `${projectIdNum}`;
+  //console.log(`Project id is: projectId: ${projectId}`);
+  projectItemArticle.id = `project-item-` + `${projectIdNum}`;
+
+  projectsCnt.appendChild(projectItemArticle);
+
+  //Create container for delete icon
+  const projectDltCnt = document.createElement("div");
+  projectDltCnt.className = "project-delete-container";
+
+  projectItemArticle.appendChild(projectDltCnt);
+
+  ///Create the delete icon
+  const deleteIcon = document.createElement("img");
+  deleteIcon.setAttribute("src", "./img/delete.png");
+  deleteIcon.className = "project-delete-icon";
+
+  projectDltCnt.appendChild(deleteIcon);
+
+  //Create container for checkbox icon
+  const projectCheckCnt = document.createElement("div");
+  projectCheckCnt.className = "project-checkbox-container";
+
+  projectItemArticle.appendChild(projectCheckCnt);
+
+  ///Create the check icon
+  const checkIcon = document.createElement("img");
+  checkIcon.setAttribute("src", "./img/box.png");
+  checkIcon.setAttribute("alt", "unchecked");
+  checkIcon.className = "project-checkbox-icon";
+
+  projectCheckCnt.appendChild(checkIcon);
+
+  //Create project title
+  const projectTitle = document.createElement("input");
+  projectTitle.setAttribute("type", "text");
+  //projectTitle.setAttribute("placeholder", "Default");
+  //let projectIdNum = countAmountOfItems(projectsCnt);
+  projectTitle.id = `project-item-` + `${projectIdNum}-title`;
+  projectTitle.className = "project-item-input";
+  projectTitle.value = titleInput;
+
+  projectItemArticle.appendChild(projectTitle);
+
+  //Create project description
+  const projectDescription = document.createElement("input");
+  projectDescription.setAttribute("type", "text");
+  //projectDescription.setAttribute("placeholder", "Your first project!");
+  projectDescription.id = `project-item-` + `${projectIdNum}-description`;
+  projectDescription.className = "project-item-input";
+  projectDescription.value = descriptionInput;
+
+  projectItemArticle.appendChild(projectDescription);
+
+  //Create project due date
+  const projectDueDate = document.createElement("input");
+  projectDueDate.setAttribute("type", "date");
+  //console.log("What is due date in default project: " + dueDateInput);
+  projectDueDate.id = `project-item-` + `${projectIdNum}-duedate`;
+  projectDueDate.className = "project-item-input";
+  projectDueDate.value = dueDateInput;
+  // console.log("What is due date in default project: " + projectDueDate.value);
+
+  projectItemArticle.appendChild(projectDueDate);
+  console.log(projectDltCnt);
+
+  //return projectIdNum;
+};
+
+const getProjectTitleInput = (projectId) => {
+  //console.log("What is project id in getproject title input? " + projectId);
+  const title = document.getElementById("form-project-title").value;
+  //console.log("Getting project title input " + title);
+  return title;
+};
+
+const getProjectDescriptionInput = (projectId) => {
+  const description = document.getElementById("form-project-description").value;
+  return description;
+};
+
+const getProjectDuedateInput = (projectId) => {
+  const duedate = document.getElementById("form-project-duedate").value;
+  return duedate;
 };
 
 const addTodo = () => {
@@ -21,6 +115,31 @@ const addTodo = () => {
     ".form-todo-checklist-item-container"
   );
 
+  const checklistItemInputs = [];
+  const checklistItemInputsDomArr =
+    checkListItemsCnt.getElementsByTagName("input");
+  const checklistItemInputsArr = [...checklistItemInputsDomArr];
+  console.log("Here is the checklistItems Arr: " + checklistItemInputsArr);
+
+  const checklistItemCheckedStatus = [];
+  const checklistItemCheckedStatusDomArr = checkListItemsCnt.querySelectorAll(
+    ".todo-checklist-checkbox-icon"
+  );
+  const checklistItemCheckedStatusArr = [...checklistItemCheckedStatusDomArr];
+  console.log(
+    "Here is the checklistItemStatus Arr: " + checklistItemCheckedStatusArr
+  );
+
+  for (let i = 0; i < checklistItemInputsArr.length; i++) {
+    checklistItemInputs.push(checklistItemInputsArr[i].value);
+    //console.log(checklistItemCheckedStatusArr[i].getAttribute("alt"));
+    checklistItemCheckedStatus.push(
+      checklistItemCheckedStatusArr[i].getAttribute("alt")
+    );
+  }
+
+  console.log("Here are the inputs: " + checklistItemInputs);
+
   const numOfAddedCheckListItems = countAmountOfItems(checkListItemsCnt);
   //ADD CHECKLIST TO PASS ON AS ARGUMENT IN RENDERNEWTODO
   renderNewTodo(
@@ -29,7 +148,9 @@ const addTodo = () => {
     descriptionInput,
     duedateInput,
     notesInput,
-    numOfAddedCheckListItems
+    numOfAddedCheckListItems,
+    checklistItemInputs,
+    checklistItemCheckedStatus
   );
   //toggleAddTodoForm();
   //clearTodoForm();
@@ -41,7 +162,9 @@ const renderNewTodo = (
   descriptionInput,
   duedateInput,
   notesInput,
-  numOfAddedCheckListItems
+  numOfAddedCheckListItems,
+  checklistItemInputs,
+  checklistItemCheckedStatus
 ) => {
   //Get the container for the todos
   const todoCnt = document.querySelector(".todos-container");
@@ -51,8 +174,8 @@ const renderNewTodo = (
   todoItemArticle.className = "todo-item";
 
   //Make sure the given todo-item id iterates with 1 for every new item added
-  let itemsCounter = countAmountOfItems(todoCnt);
-  todoItemArticle.id = `todo-item-` + `${itemsCounter}`;
+  let projectIdNum = countAmountOfItems(todoCnt);
+  todoItemArticle.id = `todo-item-` + `${projectIdNum}`;
 
   todoCnt.appendChild(todoItemArticle);
 
@@ -130,7 +253,7 @@ const renderNewTodo = (
 
   const expandIcon = document.createElement("img");
   expandIcon.setAttribute("src", "./img/expand.png");
-  expandIcon.id = "expand-icon";
+  expandIcon.className = "expand-icon";
 
   expandIconCnt.appendChild(expandIcon);
 
@@ -179,12 +302,20 @@ const renderNewTodo = (
 
   todoCheckListCnt.appendChild(todoCheckListItemCtn);
 
+  const checklistInputsPassed = checklistItemInputs;
+  let checkListInputCounter = 0;
+
+  const checklistItemCheckedStatusPassed = checklistItemCheckedStatus;
+
+  console.log("Checklist item inputs: " + checklistInputsPassed);
+
   //Create checklist item
   for (let i = 0; i < numOfAddedCheckListItems; i++) {
     //const element = array[i];
     //console.log(i);
     //console.log("Number of added checklist items: " + numOfAddedCheckListItems);
 
+    //ADD THE INPUT TO THE CHECKLIST ITEMS
     const checkListItemOne = document.createElement("li");
     checkListItemOne.className = "todo-checklist-item";
     let checklistItemsCounter = countAmountOfItems(todoCheckListItemCtn);
@@ -210,12 +341,21 @@ const renderNewTodo = (
     checkListItemOne.appendChild(TodoCheckListCheckboxCnt);
 
     const checkListIcon = document.createElement("img");
-    checkListIcon.setAttribute("src", "./img/box.png");
-    checkListIcon.className = "todo-checklist-checkbox";
+    checkListIcon.className = "todo-checklist-checkbox-icon";
+
+    if (checklistItemCheckedStatusPassed[i] == "unchecked") {
+      checkListIcon.setAttribute("src", "./img/box.png");
+      checkListIcon.setAttribute("alt", "unchecked");
+    } else {
+      checkListIcon.setAttribute("src", "./img/boxchecked.png");
+      checkListIcon.setAttribute("alt", "checked");
+    }
 
     TodoCheckListCheckboxCnt.appendChild(checkListIcon);
 
     const textInput = document.createElement("input");
+    textInput.value = checklistInputsPassed[checkListInputCounter];
+    checkListInputCounter++;
 
     checkListItemOne.appendChild(textInput);
   }
@@ -233,88 +373,11 @@ const renderNewTodo = (
   addCheckListItemBtnCnt.appendChild(checklistAddItemBtn);
 };
 
-const addProject = () => {
-  const titleInput = document.getElementById("form-project-title").value;
-  const descriptionInput = document.getElementById(
-    "form-project-description"
-  ).value;
-  const dueDateInput = document.getElementById("form-project-duedate").value;
-  console.log(dueDateInput);
+const getTodoTitleInput = () => {};
 
-  renderNewProject(titleInput, descriptionInput, dueDateInput);
-  toggleAddProjectForm();
-  clearProjectForm();
-};
+const getTodoDescriptionInput = () => {};
 
-const renderNewProject = (titleInput, descriptionInput, duedateInput) => {
-  //console.log("Hello");
-  //const projectsContainer = document.querySelector(".projects-container");
-
-  //Get the container for projects
-  const projectsCnt = document.querySelector(".projects-container");
-  console.log(projectsCnt);
-
-  //Create article container for project item
-
-  const projectItemArticle = document.createElement("article");
-  projectItemArticle.className = "project-item";
-  let itemsCounter = countAmountOfItems(projectsCnt);
-  projectItemArticle.id = `project-item-` + `${itemsCounter}`;
-
-  projectsCnt.appendChild(projectItemArticle);
-
-  //Create container for delete icon
-  const projectDltCnt = document.createElement("div");
-  projectDltCnt.className = "project-delete-container";
-
-  projectItemArticle.appendChild(projectDltCnt);
-
-  ///Create the delete icon
-  const deleteIcon = document.createElement("img");
-  deleteIcon.setAttribute("src", "./img/delete.png");
-  deleteIcon.className = "project-delete-icon";
-
-  projectDltCnt.appendChild(deleteIcon);
-
-  //Create container for checkbox icon
-  const projectCheckCnt = document.createElement("div");
-  projectCheckCnt.className = "project-checkbox-container";
-
-  projectItemArticle.appendChild(projectCheckCnt);
-
-  ///Create the check icon
-  const checkIcon = document.createElement("img");
-  checkIcon.setAttribute("src", "./img/box.png");
-  checkIcon.className = "project-item-checkbox";
-
-  projectCheckCnt.appendChild(checkIcon);
-
-  //Create project title
-  const projectTitle = document.createElement("input");
-  projectTitle.setAttribute("type", "text");
-  //projectTitle.setAttribute("placeholder", "Default");
-  projectTitle.value = titleInput;
-
-  projectItemArticle.appendChild(projectTitle);
-
-  //Create project description
-  const projectDescription = document.createElement("input");
-  projectDescription.setAttribute("type", "text");
-  //projectDescription.setAttribute("placeholder", "Your first project!");
-  projectDescription.value = descriptionInput;
-
-  projectItemArticle.appendChild(projectDescription);
-
-  //Create project due date
-  const projectDueDate = document.createElement("input");
-  projectDueDate.setAttribute("type", "date");
-  console.log("What is due date in default project: " + duedateInput);
-  projectDueDate.value = duedateInput;
-  console.log("What is due date in default project: " + projectDueDate.value);
-
-  projectItemArticle.appendChild(projectDueDate);
-  console.log(projectDltCnt);
-};
+const getTodoDueDateInput = () => {};
 
 const expandTodo = (parentSibling) => {
   /* const todoItem = parentEl; */
@@ -404,10 +467,21 @@ const clearTodoForm = () => {
   );
   console.log(checkItem1Text);
   checkItem1Text.value = "";
+
+  //Reset the defaultCheckListItem checked state
+  const defaultCheckListItem = checkList.querySelector(
+    ".todo-checklist-checkbox-icon"
+  );
+  defaultCheckListItem.setAttribute("alt", "unchecked");
+  defaultCheckListItem.setAttribute("src", "./img/box.png");
+  /*   console.log(
+    "Default checklist item: " + defaultCheckListItem.getAttribute("alt")
+  ); */
+
   //console.log(titleCnt.value);
 };
 
-const todoFormAddCheckListItem = (event) => {
+const addCheckListItem = (event) => {
   //Get the parent and grandparent nodes
   const clickedNode = event.target.nodeName;
   const clickedGrandParentNode =
@@ -464,7 +538,7 @@ const todoFormAddCheckListItem = (event) => {
 
   const deleteIcon = document.createElement("img");
   deleteIcon.setAttribute("src", "./img/delete.png");
-  deleteIcon.className = "todo-delete-icon";
+  deleteIcon.className = "todo-checklist-delete-icon";
 
   formTodoCheckListDeleteCnt.appendChild(deleteIcon);
 
@@ -476,7 +550,8 @@ const todoFormAddCheckListItem = (event) => {
 
   const checkListIcon = document.createElement("img");
   checkListIcon.setAttribute("src", "./img/box.png");
-  checkListIcon.className = "todo-checklist-checkbox";
+  checkListIcon.setAttribute("alt", "unchecked");
+  checkListIcon.className = "todo-checklist-checkbox-icon";
 
   formTodoCheckListCheckboxCnt.appendChild(checkListIcon);
 
@@ -494,7 +569,7 @@ const todoFormAddCheckListItem = (event) => {
   console.log(todoCheckListItemCnt);
 };
 
-const removeItem = (event) => {
+const removeItemRender = (event) => {
   let clickedGrandParentNode = event.target.parentElement.parentElement;
   let clickedGreatGrandParentNode =
     event.target.parentElement.parentElement.parentElement;
@@ -508,91 +583,104 @@ const removeItem = (event) => {
   }
 };
 
+const updateProjectIdsInTheDom = () => {
+  //Updating the article container project id
+  console.log("You are now in the updateProjectIdsInTheDom");
+  const projectItemDomArr = document.querySelectorAll(".project-item");
+  console.log("projectItemDomArr: " + projectItemDomArr);
+  const projectItemArr = [...projectItemDomArr];
+  console.dir(projectItemArr);
+  //console.dir(projectItemArr[0]);
+
+  for (let i = 0; i < projectItemArr.length; i++) {
+    //const element = array[i];
+    let newId = [i + 1];
+    projectItemArr[i].id = `project-item-${newId}`;
+    console.dir(projectItemArr[i]);
+
+    //Now we also need to update the project item input ids
+    const inputDomArr = projectItemArr[i].getElementsByTagName("input");
+    console.dir(inputDomArr);
+    const inputArr = [...inputDomArr];
+    console.dir(inputArr);
+
+    for (let i = 0; i < inputArr.length; i++) {
+      //const element = array[i];
+      console.dir(inputArr[i].id);
+      //console.log(typeof inputArr[i].id);
+      if (inputArr[i].id.includes("title") == true) {
+        //inputArr[i].id = ``;
+        console.log("You have found the title input!");
+        inputArr[i].id = `project-item-${newId}-title`;
+      } else if (inputArr[i].id.includes("description") == true) {
+        console.log("You have found the description input!");
+        inputArr[i].id = `project-item-${newId}-description`;
+      } else if (inputArr[i].id.includes("duedate") == true) {
+        console.log("You have found the duedate input!");
+        inputArr[i].id = `project-item-${newId}-duedate`;
+      }
+    }
+  }
+};
+
 const countAmountOfItems = (containerToCheck) => {
-  /* const formTodoCheckListItemCnt = document.querySelector(
-    ".form-todo-checklist-item-container"
-  ); */
-  /* const amountOfCheckListChildren = document.querySelector(
-    ".form-todo-checklist-item-container"
-  ).childElementCount; */
   const amountOfCheckListChildren = containerToCheck.childElementCount;
 
   return amountOfCheckListChildren;
 };
 
-const actionBasedOnClickedElement = (event) => {
-  const parentSibling = event.target.parentElement.nextElementSibling;
-  console.log(parentSibling);
-  console.log(event.target);
-
-  switch (event.target.id || event.target.className) {
-    case "project-add-btn":
-      toggleAddProjectForm();
-      break;
-
-    case "confirm-new-project":
-      console.log("Project btn pressed!");
-      addProject();
-      break;
-
-    case "project-form-close":
-    case "project-bar1":
-    case "project-bar3":
-      //console.log("Close btn pushed!");
-      toggleAddProjectForm();
-      clearProjectForm();
-
-      break;
-
-    case "todo-add-btn":
-      toggleAddTodoForm();
-
-      break;
-
-    case "confirm-new-todo":
-      addTodo();
-      toggleAddTodoForm();
-      clearTodoForm();
-      console.log("Add todo clicked!");
-
-      break;
-
-    case "todo-form-close":
-    case "todo-bar1":
-    case "todo-bar3":
-      console.log("Close btn pushed!");
-      toggleAddTodoForm();
-      clearTodoForm();
-
-      break;
-
-    case "todo-delete-container":
-    case "project-delete-container":
-    case "project-delete-icon":
-    case "todo-checklist-delete-container":
-    case "todo-delete-icon":
-    case "todo-checklist-delete-icon":
-      console.log("Hey delete was clicked!");
-      removeItem(event);
-      break;
-
-    case "form-add-checklist-item-btn-container":
-    case "form-add-checklist-item-btn":
-    case "add-checklist-item-btn-container":
-    case "add-checklist-item-btn":
-      todoFormAddCheckListItem(event);
-      break;
-
-    case "expand":
-    case "expand-icon":
-      console.log("Hey expand got clicked");
-      expandTodo(parentSibling);
-      //switchExpandIcon();
-      break;
-
-    default:
-      break;
+const toggleCheckBoxStatus = (domContainer) => {
+  console.log(
+    "You are now in the toggle checkboxstatus func. domContainer is: " +
+      domContainer
+  );
+  if (domContainer.className == "project-item") {
+    //console.log(domContainer);
+    const checkBox = domContainer.querySelector(".project-checkbox-icon");
+    console.log(checkBox);
+    console.log("hey " + checkBox.getAttribute("alt"));
+    if (checkBox.getAttribute("alt") == "unchecked") {
+      checkBox.setAttribute("src", "./img/boxchecked.png");
+      checkBox.setAttribute("alt", "checked");
+    } else if (checkBox.getAttribute("alt") == "checked") {
+      checkBox.setAttribute("src", "./img/box.png");
+      checkBox.setAttribute("alt", "unchecked");
+    }
+  } else if (domContainer.className == "todo-checklist-item") {
+    console.log("It was the checklist item checkbox that was clicked!");
+    const checkBox = domContainer.querySelector(
+      ".todo-checklist-checkbox-icon"
+    );
+    console.log(checkBox);
+    console.log("hey " + checkBox.getAttribute("alt"));
+    if (checkBox.getAttribute("alt") == "unchecked") {
+      checkBox.setAttribute("src", "./img/boxchecked.png");
+      checkBox.setAttribute("alt", "checked");
+    } else if (checkBox.getAttribute("alt") == "checked") {
+      checkBox.setAttribute("src", "./img/box.png");
+      checkBox.setAttribute("alt", "unchecked");
+    }
   }
 };
 
-export { createDefaultEventListeners, renderNewProject };
+export {
+  renderNewProject,
+  getProjectTitleInput,
+  getProjectDescriptionInput,
+  getProjectDuedateInput,
+  addTodo,
+  renderNewTodo,
+  getTodoTitleInput,
+  getTodoDescriptionInput,
+  getTodoDueDateInput,
+  expandTodo,
+  toggleAddProjectForm,
+  clearProjectForm,
+  toggleAddTodoForm,
+  clearTodoForm,
+  addCheckListItem,
+  removeItemRender,
+  updateProjectIdsInTheDom,
+  countAmountOfItems,
+  toggleCheckBoxStatus,
+};
