@@ -5,27 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
     <title>YourTodos</title>
   </head>
   <body>
     <header>
-      <div class="logo-container">
+      <!-- <div class="logo-container">
         <h2>Logo</h2>
-      </div>
+      </div> -->
       <div class="title-container">
         <h1>Your Todos</h1>
       </div>
     </header>
     <main>
       
-      <!-- PROEJCT SECTION -->
+      <!-- PROJECT SECTION -->
       <section class="project">
         <header class="project-header">
           <h2>Projects</h2>
           <button id="project-add-btn-container">
             <img src="img/add.png" alt="" id="project-add-btn" />
           </button>
-          <!-- <h5>Create new project</h5> -->
         </header>
         <div class="projects-container">
           <!-- <h3 class="project-heading-name">Name</h3>
@@ -37,17 +39,17 @@
             <h3 class="project-heading-description">Description</h3>
             <h3 class="project-heading-duedate">Due Date</h3>
           </div>
-          <!-- <article class="project-item" id="project-item-1">
+          <article class="project-item" id="project-item-1">
             <div class="project-delete-container">
-              <img src="./img/delete.png" alt="" class="project-delete-icon"/>
+              <img src="./img/delete.png" class="project-delete-icon"/>
             </div>
             <div class="project-checkbox-container">
-              <img src="./img/box.png" alt="" class="project-item-checkbox" />
+              <img src="./img/box.png" alt="unchecked"  class="project-checkbox-icon" />
             </div>
-            <input type="text" />
-            <input type="text" />
-            <input type="date" />
-          </article> -->
+            <input type="text" placeholder="Default project" class="project-item-input" id="project-item-1-title"/>
+            <input type="text" placeholder="Add a description!" class="project-item-input" id="project-item-1-description"/>
+            <input type="date" value="2021-07-21" class="project-item-input" id="project-item-1-duedate"/>
+          </article>
         </div>
       </section>
       
@@ -110,8 +112,8 @@
                     <div class="todo-checklist-checkbox-container">
                       <img
                         src="./img/box.png"
-                        alt=""
-                        class="todo-checklist-checkbox"
+                        alt="unchecked"
+                        class="todo-checklist-checkbox-icon"
                       />
                     </div>
                     <input type="text" id="todo-checklist-item-1-text" />
@@ -145,7 +147,7 @@
             />
             <input type="date" />
             <div class="expand">
-              <img src="./img/expand.png" alt="" id="expand-icon" />
+              <img src="./img/expand.png" alt="" class="expand-icon"/>
             </div>
              <div class="todo-expand-container hide" id="todo-expand-container-item-2">
               <div class="todo-notes-container">
@@ -157,13 +159,13 @@
                 <ul class="todo-checklist-item-container">
                   <li class="todo-checklist-item" id="todo-checklist-item-1">
                     <div class="todo-checklist-delete-container">
-                      <img src="./img/delete.png" alt="" class="todo-delete-icon"/>
+                      <img src="./img/delete.png" alt="" class="todo-checklist-delete-icon"/>
                     </div>
                     <div class="todo-checklist-checkbox-container">
                       <img
                         src="./img/box.png"
-                        alt=""
-                        class="todo-checklist-checkbox"
+                        alt="checked"
+                        class="todo-checklist-checkbox-icon"
                       />
                     </div>
                     <input type="text" id="todo-checklist-item-2-text" />
@@ -260,13 +262,13 @@
               id="form-todo-checklist-item-1"
             >
               <div class="todo-checklist-delete-container">
-                <img src="./img/delete.png" alt="" class="todo-delete-icon"/>
+                <img src="./img/delete.png" alt="" class="todo-checklist-delete-icon"/>
               </div>
               <div class="todo-checklist-checkbox-container">
                 <img
                   src="./img/box.png"
-                  alt=""
-                  class="todo-checklist-checkbox"
+                  alt="unchecked"
+                  class="todo-checklist-checkbox-icon"
                 />
               </div>
               <input type="text" id="form-todo-checklist-item-1-text" />
