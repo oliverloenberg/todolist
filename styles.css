@@ -57,7 +57,7 @@ select {
   background-color: rgba(0, 0, 0, 0);
   font-size: 24px;
   font-weight: bold;
-  margin: 0 0 0 5px;
+  margin: 0 8px 0 8px;
   border-bottom: 1px solid white;
   height: 25px;
   color: rgb(240, 240, 240);
@@ -547,7 +547,24 @@ form button {
   resize: none;
 }
 
-.form-todo-checklist-delete-container img {
+.form-todo-checklist-delete-container {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.form-todo-checklist-delete-icon {
+  width: 24px;
+  margin: 0 2px;
+}
+
+.form-todo-checklist-checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.form-todo-checklist-checkbox-icon {
   width: 24px;
   margin: 0 2px;
 }
@@ -559,7 +576,7 @@ form button {
 
 .form-todo-checklist-item {
   display: flex;
-  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .form-todo-checklist-item input {

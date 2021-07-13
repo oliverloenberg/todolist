@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <title>YourTodos</title>
   </head>
   <body>
@@ -20,7 +23,6 @@
       </div>
     </header>
     <main>
-      
       <!-- PROJECT SECTION -->
       <section class="project">
         <header class="project-header">
@@ -39,20 +41,45 @@
             <h3 class="project-heading-description">Description</h3>
             <h3 class="project-heading-duedate">Due Date</h3>
           </div>
-          <article class="project-item" id="project-item-1">
+          <article class="project-item" id="project-item-0">
             <div class="project-delete-container">
-              <img src="./img/delete.png" class="project-delete-icon"/>
+              <img src="./img/delete.png" class="project-delete-icon" />
             </div>
             <div class="project-checkbox-container">
-              <img src="./img/box.png" alt="unchecked"  class="project-checkbox-icon" />
+              <img
+                src="./img/box.png"
+                alt="unchecked"
+                class="project-checkbox-icon"
+              />
             </div>
-            <input type="text" placeholder="Default project" class="project-item-input" id="project-item-1-title"/>
-            <input type="text" placeholder="Add a description!" class="project-item-input" id="project-item-1-description"/>
-            <input type="date" value="2021-07-21" class="project-item-input" id="project-item-1-duedate"/>
+            <input
+              type="text"
+              placeholder="Default project"
+              class="project-item-input"
+              data-project="project-title"
+              ;
+              id="project-item-0-title"
+            />
+            <input
+              type="text"
+              placeholder="Add a description!"
+              class="project-item-input"
+              data-project="project-description"
+              ;
+              id="project-item-0-description"
+            />
+            <input
+              type="date"
+              value="2021-07-21"
+              class="project-item-input"
+              data-project="project-duedate"
+              ;
+              id="project-item-0-duedate"
+            />
           </article>
         </div>
       </section>
-      
+
       <!-- TODO SECTION -->
       <section class="todo">
         <header class="todo-header">
@@ -61,11 +88,16 @@
           <h2>for</h2>
           <span id="change-project">
             <select name="project-dropdown" id="project-dropdown">
-              <option value="test1">Default</option>
-              <option value="default">Test1</option>
-              <option value="default">All projects</option>
+              <option
+                value="Default"
+                data-project-id="0"
+                class="dropdown-option"
+              >
+                Default
+              </option>
             </select>
           </span>
+          <h2>project</h2>
         </header>
         <div class="todos-container">
           <div class="todos-headings">
@@ -75,15 +107,24 @@
             <h3 class="todo-heading-duedate">Due Date</h3>
           </div>
 
-          <article class="todo-item" id="todo-item-1">
+          <article class="todo-item" data-project-id="0" id="todo-item-1">
             <div class="todo-delete-container">
               <img src="./img/delete.png" alt="" class="todo-delete-icon" />
             </div>
             <div class="todo-checkbox-container">
-              <img src="./img/box.png" alt="" class="todo-item-checkbox" />
+              <img
+                src="./img/box.png"
+                alt="unchecked"
+                class="todo-item-checkbox"
+              />
             </div>
-            <input type="text" placeholder="Do the washing" />
-            <select name="" id="">
+            <input
+              type="text"
+              placeholder="Do the washing"
+              data-todo="todo-title"
+              id="todo-item-1-title"
+            />
+            <select name="" id="todo-item-1-priority" data-todo="todo-priority">
               <option value="1st">1st</option>
               <option value="2nd">2nd</option>
               <option value="3rd">3rd</option>
@@ -91,84 +132,55 @@
             <input
               type="text"
               placeholder="Remember to check for plecters and other stuff"
+              data-todo="todo-description"
+              id="todo-item-1-description"
             />
-            <input type="date" />
+            <input
+              type="date"
+              data-todo="todo-duedate"
+              id="todo-item-1-duedate"
+            />
             <div class="expand">
               <img src="./img/expand.png" alt="" class="expand-icon" />
             </div>
-            
-            <div class="todo-expand-container hide" id="todo-expand-container-item-1">
+
+            <div
+              class="todo-expand-container hide"
+              id="todo-expand-container-item-1"
+            >
               <div class="todo-notes-container">
                 <label for="todo-notes">Notes:</label>
-                <div class="todo-notes" role="textbox" contenteditable id="todo-notes-1"></div>
+                <div
+                  class="todo-notes"
+                  role="textbox"
+                  contenteditable
+                  id="todo-notes-1"
+                ></div>
               </div>
               <div class="todo-checklist-container">
                 <label for="todo-checklist">Checklist:</label>
                 <ul class="todo-checklist-item-container">
-                  <li class="todo-checklist-item" id="todo-checklist-item-1">
+                  <li class="todo-checklist-item" id="todo-checklist-item-2">
                     <div class="todo-checklist-delete-container">
-                      <img src="./img/delete.png" alt="" class="todo-checklist-delete-icon" />
-                    </div>
-                    <div class="todo-checklist-checkbox-container">
                       <img
-                        src="./img/box.png"
-                        alt="unchecked"
-                        class="todo-checklist-checkbox-icon"
+                        src="./img/delete.png"
+                        alt=""
+                        class="todo-checklist-delete-icon"
                       />
                     </div>
-                    <input type="text" id="todo-checklist-item-1-text" />
-                  </li>
-                </ul>
-                <div class="add-checklist-item-btn-container">
-                  <img
-                    src="./img/add.png"
-                    alt=""
-                    class="add-checklist-item-btn"
-                  />
-                </div>
-            </div>
-          </article>
-          <article class="todo-item" id="todo-item-2">
-            <div class="todo-delete-container">
-              <img src="./img/delete.png" alt="" class="todo-delete-icon"/>
-            </div>
-            <div class="todo-checkbox-container">
-              <img src="./img/box.png" alt="" class="todo-item-checkbox" />
-            </div>
-            <input type="text" placeholder="Item 2" />
-            <select name="" id="">
-              <option value="1st">1st</option>
-              <option value="2nd">2nd</option>
-              <option value="3rd">3rd</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Remember to check for plecters and other stuff"
-            />
-            <input type="date" />
-            <div class="expand">
-              <img src="./img/expand.png" alt="" class="expand-icon"/>
-            </div>
-             <div class="todo-expand-container hide" id="todo-expand-container-item-2">
-              <div class="todo-notes-container">
-                <label for="todo-notes">Notes:</label>
-                <div class="todo-notes" role="textbox" contenteditable id="todo-notes-2"></div>
-              </div>
-              <div class="todo-checklist-container">
-                <label for="todo-checklist">Checklist:</label>
-                <ul class="todo-checklist-item-container">
-                  <li class="todo-checklist-item" id="todo-checklist-item-1">
-                    <div class="todo-checklist-delete-container">
-                      <img src="./img/delete.png" alt="" class="todo-checklist-delete-icon"/>
-                    </div>
                     <div class="todo-checklist-checkbox-container">
                       <img
-                        src="./img/box.png"
+                        src="./img/boxchecked.png"
                         alt="checked"
                         class="todo-checklist-checkbox-icon"
                       />
                     </div>
-                    <input type="text" id="todo-checklist-item-2-text" />
+                    <input
+                      type="text"
+                      id="todo-checklist-item-2-text"
+                      data-todo-checklist-item="checklist-item-title"
+                      value="Check temp"
+                    />
                   </li>
                 </ul>
                 <div class="add-checklist-item-btn-container">
@@ -178,6 +190,7 @@
                     class="add-checklist-item-btn"
                   />
                 </div>
+              </div>
             </div>
           </article>
         </div>
@@ -215,7 +228,7 @@
           <!-- <div id="confirm-new-project">Add project</div> -->
         </form>
       </aside>
-     
+
       <!-- TODO FORM -->
       <aside class="todo-form-container hide">
         <form action="#" id="todo-form">
@@ -258,20 +271,24 @@
 
           <ul class="form-todo-checklist-item-container">
             <li
-              class="todo-checklist-item"
-              id="form-todo-checklist-item-1"
+              class="form-todo-checklist-item"
+              id="form-todo-checklist-item-3"
             >
-              <div class="todo-checklist-delete-container">
-                <img src="./img/delete.png" alt="" class="todo-checklist-delete-icon"/>
+              <div class="form-todo-checklist-delete-container">
+                <img
+                  src="./img/delete.png"
+                  alt=""
+                  class="form-todo-checklist-delete-icon"
+                />
               </div>
-              <div class="todo-checklist-checkbox-container">
+              <div class="form-todo-checklist-checkbox-container">
                 <img
                   src="./img/box.png"
                   alt="unchecked"
-                  class="todo-checklist-checkbox-icon"
+                  class="form-todo-checklist-checkbox-icon"
                 />
               </div>
-              <input type="text" id="form-todo-checklist-item-1-text" />
+              <input type="text" id="form-todo-checklist-item-3-text" />
             </li>
           </ul>
           <div class="form-add-checklist-item-btn-container">
@@ -281,7 +298,7 @@
               class="form-add-checklist-item-btn"
             />
           </div>
-           <button type="button" id="confirm-new-todo">Add todo</button>
+          <button type="button" id="confirm-new-todo">Add todo</button>
         </form>
       </aside>
     </main>
