@@ -33,6 +33,7 @@ import {
   getSelectedDropdownId,
   countAmountOfItems,
   toggleCheckBoxStatus,
+  switchExpandIcon,
 } from "./domManipulation.js";
 import { Todo, makeNewTodo, removeTodoItem, toggleTodoIsDone } from "./todos";
 import {
@@ -807,7 +808,7 @@ const actionBasedOnClickedElement = (event) => {
       console.log(JSON.stringify(todoObj));
       console.log(projectArr);
 
-      //Push changed project Obj to localstorage and overwrite the existing one
+      //Push changed project Obj to localstorage and overwrite the existing one.
       localStorage.setItem(
         `project-${checklistProjectId}`,
         JSON.stringify(projectObj)
@@ -1009,7 +1010,7 @@ const actionBasedOnClickedElement = (event) => {
     case "expand-icon":
       console.log("Hey expand got clicked");
       expandTodo(parentSibling);
-      //switchExpandIcon();
+      switchExpandIcon(event);
       break;
 
     default:

@@ -861,6 +861,18 @@ const toggleCheckBoxStatus = (domContainer) => {
   }
 };
 
+const switchExpandIcon = (event) => {
+  console.log("We are now in the switch expand icon func!");
+  console.log(event.target);
+  const switchIcon = event.target;
+
+  if (switchIcon.getAttribute("src") == "./img/expand.png") {
+    switchIcon.setAttribute("src", "./img/expandless.png");
+  } else {
+    switchIcon.setAttribute("src", "./img/expand.png");
+  }
+};
+
 export {
   renderNewProject,
   getProjectTitleInput,
@@ -887,4 +899,5 @@ export {
   getSelectedDropdownId,
   countAmountOfItems,
   toggleCheckBoxStatus,
+  switchExpandIcon,
 };

@@ -64,6 +64,11 @@ select {
   cursor: pointer;
 }
 
+#project-dropdown {
+  height: 32px;
+  margin-top: 3px;
+}
+
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
@@ -362,10 +367,17 @@ form button {
 }
 
 #todo-add-btn {
+}
+
+.big-add-btn {
+  /* box-shadow: inset 2px 2px 2px white, 2px 2px 2px black; */
   width: 32px;
   height: auto;
   margin: 0 5px;
   cursor: pointer;
+}
+
+.big-add-btn:hover {
 }
 
 .todos-container {
