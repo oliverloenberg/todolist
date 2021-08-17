@@ -8,7 +8,7 @@ The app roughly works in the following way with two overviews:
 
 The left hand side shows your projects which you can create with a title, description, due date and when you see fit mark it as done in the empty checkbox. You can also delete projects on the fly. You can create a new Project by clicking the plus icon and fill out the form which comes into view.
 
-The right hand side shows your todos for the currently selected project in the dropdown menu. You can create a new todo by clicking the plus icon and fill out the form. Each todo can be expanded by clicking the small downwards point arrow and collapsed again by clicking the now upwards pointing arrow. In this expanded overview of a todo you have access to creating some notes, and creating checklist items for the todo. 
+The right hand side shows your todos for the currently selected project in the dropdown menu. You can create a new todo by clicking the plus icon and fill out the form. Each todo can be expanded by clicking the small downwards pointing arrow and collapsed again by clicking the now upwards pointing arrow. In this expanded overview of a todo you have access to creating some notes, and creating checklist items for the todo. 
 
 Checklist items can be created by clicking the small plus icon. Each checklist item can also be deleted and have their title edited, as well as marked as done with the little empty checkbox icon. 
 
