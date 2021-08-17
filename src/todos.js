@@ -2,10 +2,10 @@ const Todo = class {
   checklist = [];
   isDone = false;
 
-  constructor(title, description, duedate, priority, notes, todoId) {
+  constructor(title, description, dueDate, priority, notes, todoId) {
     this.title = title;
     this.description = description;
-    this.duedate = duedate;
+    this.dueDate = dueDate;
     this.priority = priority;
     this.notes = notes;
     this.todoId = todoId;

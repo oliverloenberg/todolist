@@ -1,9 +1,10 @@
-const renderNewProject = (uniqueId) => {
-  const titleInput = document.getElementById("form-project-title").value;
-  const descriptionInput = document.getElementById(
-    "form-project-description"
-  ).value;
-  const dueDateInput = document.getElementById("form-project-duedate").value;
+const renderNewProject = (uniqueId, title, description, date, doneStatus) => {
+  const titleInput = title;
+  //document.getElementById("form-project-title").value;
+  const descriptionInput = description;
+  //document.getElementById("form-project-description").value;
+  const dueDateInput = date;
+  //document.getElementById("form-project-duedate").value;
   //console.log("Hello");
   //const projectsContainer = document.querySelector(".projects-container");
 
@@ -49,6 +50,11 @@ const renderNewProject = (uniqueId) => {
   checkIcon.className = "project-checkbox-icon";
 
   projectCheckCnt.appendChild(checkIcon);
+
+  if (doneStatus == true) {
+    checkIcon.setAttribute("src", "./img/boxchecked.png");
+    checkIcon.setAttribute("alt", "checked");
+  }
 
   //Create project title
   const projectTitle = document.createElement("input");
@@ -149,54 +155,30 @@ const updateProjectDropDown = (projectArr) => {
   }
 };
 
-const renderNewTodo = (uniqueId, projectId) => {
-  //Fetch the input values from the form we have just filled out
+const renderNewTodo = (
+  uniqueId,
+  projectId,
+  title,
+  description,
+  dueDate,
+  priority,
+  notes,
+  checklistItemArr,
+  isDone
+) => {
   //console.log("Here is the passed project id in rendernew todo: " + projectId);
-  const titleInput = document.getElementById("form-todo-title").value;
-  const priorityInput = document.getElementById("form-todo-priority").value;
-  const descriptionInput = document.getElementById(
-    "form-todo-description"
-  ).value;
-  const duedateInput = document.getElementById("form-todo-duedate").value;
-  const notesInput = document.getElementById("form-todo-notes").value;
+  const titleInput = title;
+  //document.getElementById("form-todo-title").value;
+  const priorityInput = priority;
+  //document.getElementById("form-todo-priority").selectedIndex;
+  console.log("The priority input selected index: " + priorityInput);
+  const descriptionInput = description;
+  //document.getElementById("form-todo-description").value;
+  const duedateInput = dueDate;
+  //document.getElementById("form-todo-duedate").value;
+  const notesInput = notes;
+  //document.getElementById("form-todo-notes").value;
   console.log(notesInput);
-
-  //Grab the container for the checklist items
-  const checkListItemsCnt = document.querySelector(
-    ".form-todo-checklist-item-container"
-  );
-
-  //Lets get a number for how many checklist items we actually have added in the form
-  const numOfAddedCheckListItems = countAmountOfItems(checkListItemsCnt);
-  //Make an array where we store the inputs for each checklist item
-  const checklistItemInputs = [];
-  //Lets get the first array iteration of the html checklist input nodes
-  const checklistItemInputsDomArr =
-    checkListItemsCnt.getElementsByTagName("input");
-  //Lets convert that to an actual array
-  const checklistItemInputsArr = [...checklistItemInputsDomArr];
-  console.log("Here is the checklistItems Arr: " + checklistItemInputsArr);
-
-  //Same procedure but this time for the checklist item status
-  const checklistItemCheckedStatus = [];
-  const checklistItemCheckedStatusDomArr = checkListItemsCnt.querySelectorAll(
-    ".form-todo-checklist-checkbox-icon"
-  );
-  const checklistItemCheckedStatusArr = [...checklistItemCheckedStatusDomArr];
-  console.log(
-    "Here is the checklistItemStatus Arr: " + checklistItemCheckedStatusArr
-  );
-
-  //Lets go through both arrays and push their values to their respective arrays, for the checklist item inputs and their checked status
-  for (let i = 0; i < checklistItemInputsArr.length; i++) {
-    checklistItemInputs.push(checklistItemInputsArr[i].value);
-    //console.log(checklistItemCheckedStatusArr[i].getAttribute("alt"));
-    checklistItemCheckedStatus.push(
-      checklistItemCheckedStatusArr[i].getAttribute("alt")
-    );
-  }
-
-  console.log("Here are the inputs: " + checklistItemInputs);
 
   //Now we can start building a todo
 
@@ -240,10 +222,18 @@ const renderNewTodo = (uniqueId, projectId) => {
 
   todoCheckboxCnt.appendChild(checkboxIcon);
 
+  ///Lets check if the todo is set to done and change the checkbox icon accordingly
+  if (isDone == true) {
+    checkboxIcon.setAttribute("src", "./img/boxchecked.png");
+    checkboxIcon.setAttribute("alt", "checked");
+  }
+
   //Create the title input
   const titleField = document.createElement("input");
   titleField.setAttribute("type", "text");
   titleField.value = titleInput;
+  titleField.setAttribute("data-todo", "todo-title");
+  titleField.id = `todo-item-` + `${uniqueId}` + `-title`;
 
   todoItemArticle.appendChild(titleField);
 
@@ -252,9 +242,12 @@ const renderNewTodo = (uniqueId, projectId) => {
 
   todoItemArticle.appendChild(dropdownCnt);
 
+  dropdownCnt.setAttribute("data-todo", "todo-priority");
+  dropdownCnt.id = `todo-item-` + `${uniqueId}` + `-priority`;
+
   const optionOne = document.createElement("option");
   optionOne.setAttribute("value", "1st");
-  optionOne.innerHTML = priorityInput;
+  optionOne.innerHTML = "1st";
 
   const optionTwo = document.createElement("option");
   optionTwo.setAttribute("value", "2nd");
@@ -268,9 +261,14 @@ const renderNewTodo = (uniqueId, projectId) => {
   dropdownCnt.appendChild(optionTwo);
   dropdownCnt.appendChild(optionThree);
 
+  //Set the correct priority option which was selected in the make new todo form
+  dropdownCnt.selectedIndex = priorityInput;
+
   //Create description input
   const descriptionField = document.createElement("input");
   descriptionField.setAttribute("type", "text");
+  descriptionField.setAttribute("data-todo", "todo-description");
+  descriptionField.id = `todo-item-` + `${uniqueId}` + `-description`;
   descriptionField.value = descriptionInput;
 
   todoItemArticle.appendChild(descriptionField);
@@ -278,6 +276,9 @@ const renderNewTodo = (uniqueId, projectId) => {
   //Create duedate input
   const duedateField = document.createElement("input");
   duedateField.setAttribute("type", "date");
+  duedateField.setAttribute("data-todo", "todo-duedate");
+  duedateField.id = `todo-item-` + `${uniqueId}` + `-duedate`;
+  console.log("Rendering the todo, and the duedateInput is: " + duedateInput);
   duedateField.value = duedateInput;
 
   todoItemArticle.appendChild(duedateField);
@@ -316,11 +317,42 @@ const renderNewTodo = (uniqueId, projectId) => {
   const todoNotesTextBox = document.createElement("div");
   todoNotesTextBox.setAttribute("role", "textbox");
   todoNotesTextBox.setAttribute("contenteditable", "");
+  todoNotesTextBox.setAttribute("data-todo", "todo-notes");
   todoNotesTextBox.className = "todo-notes";
   todoNotesTextBox.innerHTML = notesInput;
-  //todoNotesTextBox.id = `todo-notes-` + `${}`;
+  todoNotesTextBox.id = `todo-notes-` + `${uniqueId}`;
 
   todoNotesCnt.appendChild(todoNotesTextBox);
+
+  //CHECKLIST ITEM SECTION
+
+  console.log("checklistItem length: " + checklistItemArr.length);
+  console.log("The first checklist item example: " + checklistItemArr[0]);
+
+  //Lets get a number for how many checklist items we actually have added in the form
+  const numOfAddedCheckListItems = checklistItemArr.length;
+
+  //Make an array where we store the inputs for each checklist item
+  const checklistItemInputs = [];
+
+  //Same procedure but this time for the checklist item status
+  const checklistItemCheckedStatus = [];
+
+  //Lets go through both arrays and push their values to their respective arrays, for the checklist item inputs and their checked status
+  for (let i = 0; i < checklistItemArr.length; i++) {
+    console.log("The checklist item title: " + checklistItemArr[i].title);
+    console.log(
+      "The checklist item done status: " + checklistItemArr[i].isDone
+    );
+    checklistItemInputs.push(checklistItemArr[i].title);
+
+    checklistItemCheckedStatus.push(checklistItemArr[i].isDone);
+  }
+
+  console.log("Here are the inputs: " + checklistItemInputs);
+  console.log(
+    "Here is the checklistItemStatus Arr: " + checklistItemCheckedStatus
+  );
 
   //Create todo checklist container
   const todoCheckListCnt = document.createElement("div");
@@ -347,6 +379,7 @@ const renderNewTodo = (uniqueId, projectId) => {
   console.log("Checklist item inputs: " + checklistInputsPassed);
 
   //Create checklist item
+
   for (let i = 0; i < numOfAddedCheckListItems; i++) {
     //const element = array[i];
     //console.log(i);
@@ -356,7 +389,8 @@ const renderNewTodo = (uniqueId, projectId) => {
     const checkListItemOne = document.createElement("li");
     checkListItemOne.className = "todo-checklist-item";
     //let checklistItemsCounter = countAmountOfItems(todoCheckListItemCtn);
-    checkListItemOne.id = `todo-checklist-item-` + `${uniqueId}`;
+    checkListItemOne.id =
+      `todo-checklist-item-` + `${checklistItemArr[i].checklistItemId}`;
 
     todoCheckListItemCtn.appendChild(checkListItemOne);
 
@@ -379,7 +413,7 @@ const renderNewTodo = (uniqueId, projectId) => {
     const checkListIcon = document.createElement("img");
     checkListIcon.className = "todo-checklist-checkbox-icon";
 
-    if (checklistItemCheckedStatusPassed[i] == "unchecked") {
+    if (checklistItemCheckedStatusPassed[i] == false) {
       checkListIcon.setAttribute("src", "./img/box.png");
       checkListIcon.setAttribute("alt", "unchecked");
     } else {
@@ -390,7 +424,15 @@ const renderNewTodo = (uniqueId, projectId) => {
     TodoCheckListCheckboxCnt.appendChild(checkListIcon);
 
     const textInput = document.createElement("input");
+    textInput.id =
+      `todo-checklist-item-` +
+      `${checklistItemArr[i].checklistItemId}` +
+      `-text`;
+    textInput.setAttribute("data-todo-checklist", "checklist-item-title");
+    textInput.setAttribute("type", "text");
+
     textInput.value = checklistInputsPassed[checkListInputCounter];
+
     checkListInputCounter++;
 
     checkListItemOne.appendChild(textInput);
@@ -679,6 +721,11 @@ const renderCheckListItem = (event, checklistItemId) => {
     `todo-checklist-item-` +
     `${checklistItemId}` +
     `-text`;
+
+  //If we are adding a checklist item in the todo overview, then also attach this attribute so we can find it when editing its contents
+  if (clickedGrandParentNode == "DIV") {
+    textInput.setAttribute("data-todo-checklist", "checklist-item-title");
+  }
 
   newCheckListItem.appendChild(textInput);
 

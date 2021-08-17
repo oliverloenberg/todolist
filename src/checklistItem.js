@@ -1,7 +1,8 @@
 const CheckListItem = class {
-  constructor(title, isDone) {
+  constructor(title, isDone, checklistItemId) {
     this.title = title;
     this.isDone = isDone;
+    this.checklistItemId = checklistItemId;
   }
 
   get title() {
@@ -19,14 +20,26 @@ const CheckListItem = class {
   set isDone(doneInput) {
     this._isDone = doneInput;
   }
+
+  get checklistItemId() {
+    return this._checklistItemId;
+  }
+
+  set checklistItemId(idInput) {
+    this._checklistItemId = idInput;
+  }
 };
 
-const makeNewChecklistItem = (title, isDone) => {
-  const newChecklistItem = new CheckListItem(title, isDone);
+const makeNewChecklistItem = (title, isDone, checklistItemId) => {
+  const newChecklistItem = new CheckListItem(title, isDone, checklistItemId);
   return newChecklistItem;
 };
 
 const findChecklistArray = (projectArr, projectId, passedTodoId) => {
+  console.log("You are now ine the findChecklistArray func:");
+  console.log("The project arr is: " + projectArr);
+  console.log("The projectId is: " + projectId);
+  console.log("The passedTodoId is: " + passedTodoId);
   const projectObj = projectArr.find((project) => {
     return project.projectId == projectId;
   });
@@ -97,6 +110,7 @@ const toggleChecklistItemIsDone = (
 export {
   CheckListItem,
   makeNewChecklistItem,
+  findChecklistArray,
   removeChecklistItem,
   toggleChecklistItemIsDone,
 };
