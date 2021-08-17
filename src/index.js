@@ -802,10 +802,16 @@ const actionBasedOnClickedElement = (event) => {
 
       console.log("Here is the todoObj: " + JSON.stringify(todoObj));
       //Create a new checklist obj and push that into the todo checklist Arr
-      const newChecklistObj = makeNewChecklistItem("", false);
+      const newChecklistObj = makeNewChecklistItem("", false, checklistItemId);
       todoObj.addChecklistToTodo(newChecklistObj);
       console.log(JSON.stringify(todoObj));
       console.log(projectArr);
+
+      //Push changed project Obj to localstorage and overwrite the existing one
+      localStorage.setItem(
+        `project-${checklistProjectId}`,
+        JSON.stringify(projectObj)
+      );
 
       break;
 
